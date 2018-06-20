@@ -1,0 +1,62 @@
+# Danish (Denmark) translations for ckanext-datasetreplication.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the
+# ckanext-datasetreplication project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckanext-datasetreplication 0.0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-06-07 11:50+0200\n"
+"PO-Revision-Date: 2017-06-07 11:54+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: da_DK\n"
+"Language-Team: da_DK <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ckanext/datasetreplication/controller.py:96
+msgid "Unable to parse the selected file"
+msgstr "Kan ikke analysere den valgte fil"
+
+#: ckanext/datasetreplication/controller.py:115
+msgid "Successfully imported dataset: {0}"
+msgstr "Datasæt er importeret {0}"
+
+#: ckanext/datasetreplication/templates/package/read_base.html:7
+msgid "Export"
+msgstr "Eksport"
+
+#: ckanext/datasetreplication/templates/package/search.html:10
+msgid "Choose file"
+msgstr "Vælg fil"
+
+#: ckanext/datasetreplication/templates/package/search.html:11
+msgid "URL to file"
+msgstr "URL til fil"
+
+#: ckanext/datasetreplication/templates/package/search.html:14
+msgid "Add Dataset"
+msgstr "Tilføj datasæt"
+
+#: ckanext/datasetreplication/templates/package/search.html:15
+#: ckanext/datasetreplication/templates/package/search.html:24
+msgid "Import Dataset"
+msgstr "Importer datasæt"
+
+#: ckanext/datasetreplication/templates/package/search.html:27
+msgid "Please upload a local JSON file from your computer."
+msgstr "Venligst uploade en lokal JSON fil fra din computer"
+
+#: ckanext/datasetreplication/templates/package/search.html:33
+msgid "Close"
+msgstr "Luk"
+
+#: ckanext/datasetreplication/templates/package/search.html:34
+msgid "Submit"
+msgstr "Indsend"
+

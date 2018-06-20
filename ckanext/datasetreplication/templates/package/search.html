@@ -1,0 +1,43 @@
+{% resource 'datasetreplication/css/datasetreplication.css' %}
+{% resource 'datasetreplication/js/datasetreplication.js' %}
+{% ckan_extends %}
+
+{% block page_primary_action %}
+<div class="pull-right">
+</div>
+{% if h.check_access('package_create') %}
+{% set ctrl = 'ckanext.datasetreplication.controller:DatasetReplicationController' %}
+{% set upload_label = _('Choose file') %}
+{% set url_label = _('URL to file') %}
+<div class="page_primary_action">
+    <ul class="list-inline">
+        <li>{% link_for _('Add Dataset'), controller='package', action='new', class_='btn btn-primary', icon='plus' %}</li>
+        <li><button data-toggle="modal" data-target="#dataset-upload-modal" id="btn-dataset-form-toggle" class="btn btn-default"><span class="fa fa-cloud-upload"></span><span class="fa-label">{{_("Import Dataset")}}</span></button></li>
+    </ul>
+
+    <form class="dataset-upload-form" method="POST" enctype="multipart/form-data" action="{{h.url_for(controller=ctrl, action='package_import')}}">
+        <div class="modal fade" id="dataset-upload-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-uppercase">{{_('Import Dataset')}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{_('Please upload a local JSON file from your computer.')}}</p>
+                        {{ form.image_upload({}, {}, is_upload_enabled=h.uploads_enabled(), is_url=false, is_upload=false,
+                        field_url=h.dataset_url_field_name(), field_upload=h.dataset_upload_field_name(),
+                        upload_label=upload_label, url_label=url_label, placeholder=' ') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{_('Close')}}</button>
+                        <button type="submit" data-submit="modal" name="submit" class="btn btn-primary">{{_('Submit')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+{% endif %}
+{% endblock %}

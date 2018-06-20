@@ -1,0 +1,9 @@
+{% ckan_extends %}
+
+{% block content_action %}
+  {{super()}}
+  {% set ctrl = 'ckanext.datasetreplication.controller:DatasetReplicationController' %}
+  {% if h.check_access('package_update', {'id':pkg.id }) %}
+    {% link_for _('Export'), controller=ctrl, action='package_export', id=pkg.name, class_='btn btn-default', icon='cloud-download' %}
+  {% endif %}
+{% endblock %}
