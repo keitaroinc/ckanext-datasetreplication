@@ -10,7 +10,7 @@ except ImportError:
 import ckan.plugins.toolkit as t
 import ckan.logic as l
 
-from ckanext.datastore.db import (_get_engine, _get_fields_types, _PG_ERR_CODE, _get_unique_key)
+from ckanext.datastore.backend.postgres import (_get_engine_from_url, _get_fields_types, _PG_ERR_CODE, _get_unique_key)
 from sqlalchemy.exc import ProgrammingError, DBAPIError
 
 log = logging.getLogger(__name__)
@@ -40,10 +40,10 @@ dataset_url_field_name = lambda : config.get(
 
 def resource_primary_key(resource_id):
     context, data_dict = {}, {}
-    data_dict['connection_url'] = config.get('ckan.datastore.read_url')
+    connection_url = config.get('ckan.datastore.read_url')
     data_dict['resource_id'] = resource_id
 
-    engine = _get_engine(data_dict)
+    engine = _get_engine_from_url(connection_url)
     context['connection'] = engine.connect()
 
     # Default timeout 60000 ms
