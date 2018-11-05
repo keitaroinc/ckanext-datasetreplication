@@ -94,14 +94,14 @@ class DatasetReplicationController(PackageController):
                         data = json.loads(data)
                     except Exception as exc:
                         h.flash_error(_('Unable to parse the selected file'))
-                        base.redirect(h.url_for(controller='package', action='search'))
+                        h.redirect_to(h.url_for(controller='package', action='search'))
 
                     resources = data.pop('resources', [])
                     try:
                         dataset = logic.get_action('package_create')(None, data)
                     except logic.ValidationError as e:
                         self._flash_errors(e.error_dict.items())
-                        base.redirect(h.url_for(controller='package', action='search'))
+                        h.redirect_to(h.url_for(controller='package', action='search'))
 
                     for res in resources:
                         res['resource']['package_id'] = dataset['id']
@@ -110,7 +110,7 @@ class DatasetReplicationController(PackageController):
                         except logic.ValidationError as e:
                             logic.get_action('dataset_purge')(None, {'id': dataset['id']})
                             self._flash_errors(e.error_dict.items())
-                            base.redirect(h.url_for(controller='package', action='search'))
+                            h.redirect_to(h.url_for(controller='package', action='search'))
 
                     h.flash_success(_('Successfully imported dataset: {0}'.format(dataset['title'])))
-                    base.redirect(h.url_for(controller='package', action='read', id=dataset['id']))
+                    h.redirect_to(h.url_for(controller='package', action='read', id=dataset['id']))
